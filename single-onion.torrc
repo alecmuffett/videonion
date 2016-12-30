@@ -1,0 +1,9 @@
+# Minimal tor config for a non-anonymous hidden service
+
+SocksPort 0 # required for NonAnonymousMode
+
+DataDirectory /usr/local/lib/tor
+HiddenServiceDir /usr/local/lib/tor/videonion
+HiddenServicePort 80 127.0.0.1:8080
+HiddenServiceSingleHopMode 1        # I want single-hop onions
+HiddenServiceNonAnonymousMode 1     # Yes, really
