@@ -16,6 +16,8 @@ ffmpeg -f v4l2 -framerate 30 -video_size 640x480 -i "/dev/video0" -f alsa -threa
   nc -xlocalhost:9050 -X5 xxxxxxxxxxxxxxxx.onion 9090
 ```
 
+Ubuntu: add `-strict -2` before `-f mpegts`
+
 ### Receiving
 
 ```
@@ -39,6 +41,8 @@ socat TCP-LISTEN:9091,reuseaddr,fork EXEC:'ffmpeg -f avfoundation -framerate 30 
 ```
 socat TCP-LISTEN:9091,reuseaddr,fork EXEC:'ffmpeg -f v4l2 -framerate 30 -video_size 640x480 -i "/dev/video0" -f alsa -thread_queue_size 99999 -i "hw:0" -async 1 "-c:a" aac -vcodec libx264 -tune zerolatency -preset ultrafast -f mpegts -'
 ```
+
+Ubuntu: add `-strict -2` before `-f mpegts`
 
 ### Receiving
 
