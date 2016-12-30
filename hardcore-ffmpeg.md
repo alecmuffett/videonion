@@ -21,7 +21,7 @@ Ubuntu: add `-strict -2` before `-f mpegts`
 ### Receiving
 
 ```
-nc -xlocalhost:9050 -X5 xxxxxxxxxxxxxxxx.onion 9091 | ffplay -
+nc -xlocalhost:9050 -X5 xxxxxxxxxxxxxxxx.onion 9091 | mpv -
 ```
 
 ## Server side
@@ -47,5 +47,5 @@ Ubuntu: add `-strict -2` before `-f mpegts`
 ### Receiving
 
 ```
-socat TCP-LISTEN:9090,reuseaddr,fork EXEC:"ffplay -"
+socat TCP-LISTEN:9090,reuseaddr,fork EXEC:"mpv -"
 ```
