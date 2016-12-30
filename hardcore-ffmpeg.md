@@ -49,3 +49,7 @@ Ubuntu: add `-strict -2` before `-f mpegts`
 ```
 socat TCP-LISTEN:9090,reuseaddr,fork EXEC:"mpv -"
 ```
+
+## TODO
+
+* Stop the stdout from backfeeding
