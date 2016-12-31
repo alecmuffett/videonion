@@ -1,2 +1,5 @@
 hs*.d
 *~
+*.egg-info/
+*.pyc
+*.swp
