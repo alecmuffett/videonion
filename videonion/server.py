@@ -29,6 +29,7 @@ class SendProtocol(Protocol):
         self.cpt = self.factory.reactor.spawnProcess(cp, 'ffmpeg', util.ffmpeg_args())
 
     def connectionLost(self, reason):
+        click.echo('recipient disconnected')
         self.cpt.loseConnection()
         self.factory.client_disconnected()
 
@@ -42,6 +43,10 @@ class RecvProtocol(Protocol):
             self.mpvp.stdin.write(data)
         except IOError:
             self.transport.loseConnection()
+
+    def connectionLost(self, reason):
+        click.echo('sender disconnected')
+        self.mpvp.terminate()
 
 class SendFactory(ServerFactory):
     protocol = SendProtocol
