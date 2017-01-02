@@ -63,6 +63,7 @@ def ffmpeg_args():
         '-vcodec', 'libx264',
         '-tune', 'zerolatency',
         '-preset', 'veryfast',
+        '-x264opts', 'crf=20:vbv-maxrate=3000:vbv-bufsize=100:intra-refresh=1:slice-max-size=1500:keyint=30:ref=1',
     ])
 
     # Ubuntu-only?
