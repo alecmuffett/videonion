@@ -20,6 +20,13 @@ def wormholeProto(relay=RENDEZVOUS_RELAY):
         return _wormhole
     return _decorator
 
+def isUbuntu():
+    try:
+        with open('/etc/lsb-release', 'r') as f:
+            return 'Ubuntu' in f.read()
+    except:
+        return False
+
 def ffmpeg_args():
     ret = ['ffmpeg', '-f']
 
@@ -59,7 +66,7 @@ def ffmpeg_args():
     ])
 
     # Ubuntu-only?
-    if p.isLinux():
+    if p.isLinux() and isUbuntu():
         ret.extend(['-strict', '-2'])
 
     ret.extend([
