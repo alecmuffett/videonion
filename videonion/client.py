@@ -32,9 +32,15 @@ class CameraProtocol(ProcessProtocol):
                 '-xlocalhost:9050', '-X5',
                 self.addr, self.port
             ])
+        # So we can see what we are sending
+        self.mpvp = subprocess.Popen('mpv -', stdin=subprocess.PIPE, shell=True)
 
     def outReceived(self, data):
         self.nct.write(data)
+        try:
+            self.mpvp.stdin.write(data)
+        except IOError:
+            pass # Only our side failing
 
     def processEnded(self, status):
         click.echo('ffmpeg stopped')

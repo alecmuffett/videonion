@@ -19,8 +19,16 @@ class CameraProtocol(ProcessProtocol):
     def __init__(self, sp):
         self.sp = sp
 
+    def connectionMade(self):
+        # So we can see what we are sending
+        self.mpvp = subprocess.Popen('mpv -', stdin=subprocess.PIPE, shell=True)
+
     def outReceived(self, data):
         self.sp.transport.write(data)
+        try:
+            self.mpvp.stdin.write(data)
+        except IOError:
+            pass # Only our side failing
 
 class SendProtocol(Protocol):
     def connectionMade(self):
